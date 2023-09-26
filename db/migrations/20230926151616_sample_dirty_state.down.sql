@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS correct;
+DROP TABLE IF EXISTS wrong;

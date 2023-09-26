@@ -1,0 +1,20 @@
+NOTE!!
+    - pastikan $GOPATH/bin --> sudah ditambahkan ke path, supaya cmd bisa deteksi file migration dalam /bin
+    - perhatikan urutan ketika melakukan migration, hal ini karena akan menentukan versi migratenya karena didasarkan waktu pembuatannya
+    - nanti ketika kita melakukan up/down itu berdasarkan migrate versionnya(versi waktu pembuatannya)
+
+    - jadi migration ini --> tidak untuk membuat database, kita perlu manual untuk membuat databsenya
+    - migration --> bisa untuk create/delete table di database yang telah dibuat
+
+    - dengan adanya migrate --> semua tim/anggota tau apa yang terjadi dengan perubahan di database, dengan menjalankan up/down
+    - state --> request/perubahan
+    - dirty state --> terjadi error state
+    - syarat melakukan up/down harus status dirty statenya 0,
+    - bisa dilihat melalui database melalui select * from schema_migrations
+
+TROUBLESHOOTING
+    - apabila terjadi kesalahan query di aplikasi kita sehingga tidak terbuat tablenya di database (statusnya dirty)
+    - langkah 1: drop table yang berhasil terbuat
+    - langkah 2: perbaiki query file migrate aplikasi kita
+    - langkah 3: turun 1 force versi di aplikasi kita
+    - langkah 4: naik lagi ke versi migrate yang telah diperbaiki ini
